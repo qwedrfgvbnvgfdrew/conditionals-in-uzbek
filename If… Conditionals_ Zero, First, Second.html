@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>If… Conditionals: Zero, First, Second</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#fbf8f3;--card:#ffffff;--ink:#222;--mute:#666;--line:#e6dfd3;--c0:#2f7d6d;--c1:#2b63c4;--c2:#a8458f;--soft0:#e3f3ef;--soft1:#e4edfb;--soft2:#f6e6f2;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17181b;--card:#202226;--ink:#eee;--mute:#a4a7ad;--line:#33363c;--c0:#5fc5b1;--c1:#7aa7f2;--c2:#e08ccb;--soft0:#1d3330;--soft1:#1d2a40;--soft2:#3a2536;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17181b;--card:#202226;--ink:#eee;--mute:#a4a7ad;--line:#33363c;--c0:#5fc5b1;--c1:#7aa7f2;--c2:#e08ccb;--soft0:#1d3330;--soft1:#1d2a40;--soft2:#3a2536;color-scheme:dark}
+html{scroll-padding-top:60px;scroll-behavior:smooth;height:auto}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{padding:34px 20px 18px;text-align:center}
+h1{margin:0 0 6px;font-size:clamp(28px,6vw,42px);line-height:1.15}
+header p{margin:0;color:var(--mute)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:8px;justify-content:center;padding:10px;background:var(--bg);border-bottom:1px solid var(--line);flex-wrap:wrap}
+nav a{padding:7px 14px;border-radius:99px;text-decoration:none;font-weight:600;font-size:15px;color:#fff}
+main{max-width:860px;margin:0 auto;padding:10px 16px 50px}
+section{margin:34px 0;padding:22px;border-radius:20px;background:var(--card);border:1px solid var(--line);border-top:6px solid var(--c)}
+section h2{margin:0 0 4px;font-size:27px;color:var(--c)}
+.sub{color:var(--mute);margin:0 0 16px;font-size:15px}
+.formula{background:var(--soft);border-radius:14px;padding:14px;text-align:center;font-weight:700;font-size:clamp(16px,4vw,21px);color:var(--c);margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:12px 0}
+.box{border:1px solid var(--line);border-radius:14px;padding:14px}
+.box h3{margin:0 0 6px;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--c)}
+.box p{margin:0}
+.uz{color:var(--c)}
+h4{margin:24px 0 8px;font-size:19px}
+ul.use{list-style:none;margin:0;padding:0}
+ul.use li{padding:8px 0;border-bottom:1px dashed var(--line)}
+ul.use li:last-child{border:0}
+.tip{background:var(--soft);border-left:5px solid var(--c);border-radius:10px;padding:10px 14px;margin:14px 0}
+.ex{display:grid;gap:10px}
+.ex div{border-left:4px solid var(--c);background:var(--soft);padding:9px 14px;border-radius:0 12px 12px 0}
+.ex b{display:block;font-weight:600}
+.ex span{display:block;color:var(--c);font-size:16px}
+.ex em{font-style:normal;font-weight:800}
+.text{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.text div{border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.text h3{margin:0 0 6px;font-size:18px}
+.text p{margin:0}
+footer{text-align:center;color:var(--mute);padding:10px 20px 40px;font-size:14px}
+[hidden]{display:none!important}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.btns button{font:inherit;font-size:15px;padding:9px 14px;border-radius:10px;border:1px solid var(--c);background:var(--card);color:var(--c);font-weight:600;cursor:pointer}
+.btns button:first-child{background:var(--c);color:#fff}
+.card{border:2px solid var(--c);border-radius:16px;padding:16px;margin-top:10px;background:var(--soft)}
+.q{font-size:21px;font-weight:700}.qu{margin-top:6px}.ans{margin-top:8px;font-style:italic}
+.tm{font-size:34px;font-weight:800;color:var(--c);text-align:center;min-height:44px}.sc{font-weight:600}
+</style>
+</head>
+<body>
+<header>
+<h1>If… Conditionals</h1>
+<p>Zero · First · Second &nbsp;|&nbsp; Nol · Birinchi · Ikkinchi shart</p>
+</header>
+<nav>
+<a href="#zero" style="background:var(--c0)">Zero</a>
+<a href="#first" style="background:var(--c1)">First</a>
+<a href="#second" style="background:var(--c2)">Second</a>
+</nav>
+<main id="app"></main>
+<footer>Read the English, then the Uzbek. Say each example out loud! · Avval inglizcha, keyin o‘zbekcha o‘qing. Har bir misolni ovoz chiqarib ayting!</footer>
+<script>
+var L=[
+{id:"zero",c:"c0",s:"soft0",title:"Zero Conditional",uz:"Nol shart (Zero Conditional)",
+formula:"If + present simple, present simple",
+fuz:"Agar + hozirgi oddiy zamon, hozirgi oddiy zamon",
+en:"We use the zero conditional to talk about things that are always true: facts, science, habits and general rules. When the condition happens, the result always happens too. You can replace if with when and the meaning stays the same.",
+uzx:"Nol shartdan doimo to‘g‘ri bo‘ladigan narsalar haqida gapirishda foydalanamiz: faktlar, ilmiy qonunlar, odatlar va umumiy qoidalar. Shart bajarilsa, natija har doim sodir bo‘ladi. If o‘rniga when ishlatsak ham, ma’no o‘zgarmaydi.",
+use:[["Scientific facts","Ilmiy faktlar"],["Daily habits","Kundalik odatlar"],["General truths","Umumiy haqiqatlar"]],
+tip:["Tip: if = when","Maslahat: if = when (qachonki)"],
+ex:[["If you heat ice, it melts.","Agar muzni qizdirsangiz, u erib ketadi."],
+["If water reaches 100°C, it boils.","Agar suv 100°C ga yetsa, u qaynaydi."],
+["If I drink coffee at night, I can’t sleep.","Agar kechasi qahva ichsam, uxlay olmayman."],
+["If you don’t water plants, they die.","Agar o‘simliklarni sug‘ormasangiz, ular quriydi."],
+["If it rains, the streets get wet.","Agar yomg‘ir yog‘sa, ko‘chalar ho‘l bo‘ladi."],
+["When I’m tired, I go to bed early.","Charchagan bo‘lsam, erta yotaman."],
+["If my brother is hungry, he gets angry.","Agar akam och qolsa, uning jahli chiqadi."],
+["People get sick if they don’t sleep enough.","Agar odamlar yetarlicha uxlamasa, kasal bo‘lib qoladilar."]],
+tt:"Text: My Morning Routine",tuz:"Matn: Mening ertalabki tartibim",
+ten:"I have a simple routine, and I follow it every day. If I wake up early, I make breakfast. If I drink tea in the morning, I feel calm. When it rains, I take an umbrella. If I skip breakfast, I get hungry very fast. If the bus is late, I walk to work. My mom says that if you sleep well, you feel strong all day.",
+tu:"Mening oddiy kun tartibim bor va men unga har kuni amal qilaman. Agar erta uyg‘onsam, nonushta tayyorlayman. Agar ertalab choy ichsam, o‘zimni xotirjam his qilaman. Yomg‘ir yog‘sa, soyabon olaman. Agar nonushtani o‘tkazib yuborsam, juda tez ochaman. Agar avtobus kech qolsa, ishga piyoda boraman. Onam aytadiki, agar yaxshi uxlasangiz, kun bo‘yi o‘zingizni baquvvat his qilasiz."},
+{id:"first",c:"c1",s:"soft1",title:"First Conditional",uz:"Birinchi shart (First Conditional)",
+formula:"If + present simple, will + base verb",
+fuz:"Agar + hozirgi oddiy zamon, will + fe’lning asosiy shakli",
+en:"We use the first conditional for real and possible situations in the future. If the condition happens, the result will probably happen. It is about the future, but we use the present simple after if, not will.",
+uzx:"Birinchi shartdan kelajakda sodir bo‘lishi mumkin bo‘lgan real vaziyatlar haqida gapirishda foydalanamiz. Agar shart bajarilsa, natija ham ehtimol sodir bo‘ladi. Gap kelajak haqida, lekin if dan keyin will emas, hozirgi oddiy zamon ishlatiladi.",
+use:[["Real plans","Real rejalar"],["Promises and warnings","Va’dalar va ogohlantirishlar"],["Possible future results","Kelajakdagi mumkin bo‘lgan natijalar"]],
+tip:["Never use will after if. ✗ If it will rain… ✓ If it rains…","if dan keyin will ishlatilmaydi. ✗ If it will rain… ✓ If it rains…"],
+ex:[["If it rains tomorrow, we will stay at home.","Agar ertaga yomg‘ir yog‘sa, uyda qolamiz."],
+["If you study hard, you will pass the exam.","Agar qattiq o‘qisangiz, imtihondan o‘tasiz."],
+["If I see Aziz, I will tell him.","Agar Azizni ko‘rsam, unga aytaman."],
+["If you don’t hurry, you will miss the bus.","Agar shoshilmasangiz, avtobusdan qolasiz."],
+["If she calls me, I will answer.","Agar u menga qo‘ng‘iroq qilsa, javob beraman."],
+["If we leave now, we will arrive on time.","Agar hozir chiqsak, o‘z vaqtida yetib boramiz."],
+["If I get a good score, my parents will be happy.","Agar yaxshi ball olsam, ota-onam xursand bo‘ladi."],
+["If you eat too much, you will feel sick.","Agar haddan ko‘p yesangiz, o‘zingizni yomon his qilasiz."]],
+tt:"Text: Weekend Plans",tuz:"Matn: Dam olish kuni rejalari",
+ten:"This weekend, I have big plans. If the weather is nice on Saturday, I will visit the park with my friends. If we get hungry, we will buy some plov. If my friend brings his football, we will play together. But if it rains, I will stay at home and watch a film. If I finish my homework early on Sunday, I will call my grandmother. She will be very happy if I visit her.",
+tu:"Bu dam olish kunlari mening katta rejalarim bor. Agar shanba kuni ob-havo yaxshi bo‘lsa, do‘stlarim bilan bog‘ga boraman. Agar och qolsak, palov sotib olamiz. Agar do‘stim futbol to‘pini olib kelsa, birga o‘ynaymiz. Lekin yomg‘ir yog‘sa, uyda qolib, film ko‘raman. Agar yakshanba kuni uy vazifamni erta tugatsam, buvimga qo‘ng‘iroq qilaman. Agar uning oldiga borsam, u juda xursand bo‘ladi."},
+{id:"second",c:"c2",s:"soft2",title:"Second Conditional",uz:"Ikkinchi shart (Second Conditional)",
+formula:"If + past simple, would + base verb",
+fuz:"Agar + o‘tgan oddiy zamon, would + fe’lning asosiy shakli",
+en:"We use the second conditional for imaginary or unlikely situations in the present or future. We use the past simple after if, but the meaning is not past. It shows that the situation is not real now.",
+uzx:"Ikkinchi shartdan hozir yoki kelajakda xayoliy yoki ehtimoli kam vaziyatlar haqida gapirishda foydalanamiz. If dan keyin o‘tgan oddiy zamon ishlatiladi, lekin ma’no o‘tmish emas. Bu vaziyat hozir real emasligini bildiradi.",
+use:[["Imagining things","Xayol qilish"],["Unlikely situations","Ehtimoli kam vaziyatlar"],["Giving advice: If I were you…","Maslahat berish: If I were you…"]],
+tip:["Use were for all persons: If I were, If she were…","Barcha shaxslar uchun were ishlatiladi: If I were, If she were…"],
+ex:[["If I had a million dollars, I would buy a big house.","Agar bir million dollarim bo‘lsa edi, katta uy sotib olgan bo‘lardim."],
+["If I were you, I would apologize.","Agar sizning o‘rningizda bo‘lsam edi, uzr so‘ragan bo‘lardim."],
+["If she lived by the sea, she would swim every day.","Agar u dengiz bo‘yida yashasa edi, har kuni suzardi."],
+["If we had a car, we would travel more.","Agar mashinamiz bo‘lsa edi, ko‘proq sayohat qilardik."],
+["If I could fly, I would visit every country.","Agar uchishni bilsam edi, har bir mamlakatga borardim."],
+["If he spoke English better, he would get that job.","Agar u inglizchada yaxshiroq gapirsa edi, o‘sha ishni olardi."],
+["If it were warmer, we would go to the beach.","Agar havo issiqroq bo‘lsa edi, plyajga borardik."],
+["What would you do if you won the lottery?","Agar lotereyada yutsangiz, nima qilgan bo‘lardingiz?"]],
+tt:"Text: If I Were Rich",tuz:"Matn: Agar boy bo‘lsam edi",
+ten:"Sometimes I daydream. If I were rich, I would travel the world. I would visit Japan first, and I would eat sushi every day. If I had a big garden, I would grow flowers and vegetables. I would help poor families if I had enough money. If I lived in Paris, I would speak French every day. But I’m not rich, so I will keep studying hard.",
+tu:"Ba’zan men xayol suraman. Agar boy bo‘lsam edi, dunyo bo‘ylab sayohat qilardim. Avval Yaponiyaga borardim va har kuni sushi yerdim. Agar katta bog‘im bo‘lsa edi, gul va sabzavotlar ekardim. Agar yetarli pulim bo‘lsa edi, kambag‘al oilalarga yordam berardim. Agar Parijda yashasam edi, har kuni fransuz tilida gaplashardim. Lekin men boy emasman, shuning uchun qattiq o‘qishda davom etaman."}
+];
+function esc(t){return t.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function hi(t){return esc(t).replace(/\b(if|When)\b/g,"<em>$1</em>")}
+var h="";
+L.forEach(function(x,i){
+h+='<section id="'+x.id+'" style="--c:var(--'+x.c+');--soft:var(--'+x.s+')">';
+h+='<h2>'+(i+1)+'. '+x.title+'</h2><p class="sub">'+x.uz+'</p>';
+h+='<div class="formula">'+x.formula+'<br><span style="font-weight:500;font-size:.8em">'+x.fuz+'</span></div>';
+h+='<div class="grid"><div class="box"><h3>English</h3><p>'+esc(x.en)+'</p></div><div class="box"><h3>O‘zbekcha</h3><p class="uz">'+esc(x.uzx)+'</p></div></div>';
+h+='<h4>When to use it · Qachon ishlatiladi</h4><ul class="use">';
+x.use.forEach(function(u){h+='<li>'+esc(u[0])+' — <span class="uz">'+esc(u[1])+'</span></li>'});
+h+='</ul><div class="tip">'+esc(x.tip[0])+'<br><span class="uz">'+esc(x.tip[1])+'</span></div>';
+h+='<h4>Examples · Misollar</h4><div class="ex">';
+x.ex.forEach(function(e){h+='<div><b>'+hi(e[0])+'</b><span>'+esc(e[1])+'</span></div>'});
+h+='</div><h4>'+esc(x.tt)+' · <span class="uz">'+esc(x.tuz)+'</span></h4>';
+h+='<div class="text"><div><h3>English</h3><p>'+hi(x.ten)+'</p></div><div><h3 class="uz">O‘zbekcha</h3><p class="uz">'+esc(x.tu)+'</p></div></div></section>';
+});
+document.getElementById("app").innerHTML=h;
+var G={
+zero:{n:"Finish the Fact",un:"Faktni tugating",s:10,k:"Fluent answers",
+r:"Read the card and finish the sentence out loud in 10 seconds. Use a full sentence. Score a point for each fluent answer.",
+ru:"Kartani o‘qing va 10 soniya ichida gapni ovoz chiqarib tugating. To‘liq gap ayting. Har bir ravon javob uchun 1 ball oling.",
+c:[["If you mix red and blue, …","Agar qizil va ko‘kni aralashtirsangiz, …","you get purple."],["If you don’t eat for a long time, …","Agar uzoq vaqt ovqat yemasangiz, …","you get hungry."],["If I drink too much tea, …","Agar juda ko‘p choy ichsam, …","I can’t sleep."],["If you press the button, …","Agar tugmani bossangiz, …","the light turns on."],["If the sun goes down, …","Agar quyosh botsa, …","it gets dark."],["If I have a test tomorrow, …","Agar ertaga imtihonim bo‘lsa, …","I study late."],["If it snows, …","Agar qor yog‘sa, …","children play outside."],["If you freeze water, …","Agar suvni muzlatsangiz, …","it turns into ice."],["If my phone is off, …","Agar telefonim o‘chiq bo‘lsa, …","I can’t call anyone."],["If you exercise every day, …","Agar har kuni mashq qilsangiz, …","you feel strong."]]},
+first:{n:"The Promise Chain",un:"Va’da zanjiri",s:15,k:"Chain links",
+r:"Finish the card with will. Then start a NEW if-sentence from your own result, like a chain: If I win money, I will buy a car. If I buy a car, I will… You have 15 seconds per link. How long can your chain get?",
+ru:"Kartani will bilan tugating. Keyin o‘z natijangizdan YANGI if-gap boshlang, zanjir kabi: If I win money, I will buy a car. If I buy a car, I will… Har bir halqa uchun 15 soniya. Zanjiringiz qancha uzun bo‘ladi?",
+c:[["If I win a lot of money, …","Agar ko‘p pul yutsam, …","I will buy a car."],["If I miss the bus tomorrow, …","Agar ertaga avtobusdan qolsam, …","I will be late for class."],["If I get a new job, …","Agar yangi ish topsam, …","I will move to a new city."],["If it’s sunny this Sunday, …","Agar shu yakshanba ob-havo ochiq bo‘lsa, …","I will go to the mountains."],["If I learn English well, …","Agar ingliz tilini yaxshi o‘rgansam, …","I will travel abroad."],["If my friend invites me to a party, …","Agar do‘stim meni ziyofatga taklif qilsa, …","I will go."],["If I wake up late, …","Agar kech uyg‘onsam, …","I will skip breakfast."],["If I cook dinner tonight, …","Agar bugun kechqurun kechki ovqat pishirsam, …","I will make plov."]]},
+second:{n:"30-Second Dream Talk",un:"30 soniyalik xayol suhbati",s:30,k:"Would-sentences",
+r:"Talk for 30 seconds without stopping. Use at least 3 sentences with would. Tap +1 for each would-sentence you say.",
+ru:"To‘xtamasdan 30 soniya gapiring. Kamida 3 ta would bilan gap ishlating. Har bir would-gap uchun +1 bosing.",
+c:[["What would you do if you were invisible for a day?","Agar bir kunga ko‘rinmas bo‘lsangiz, nima qilgan bo‘lardingiz?","I would walk into a museum and watch everything quietly."],["If you could live anywhere, where would you live?","Agar xohlagan joyda yashay olsangiz, qayerda yashagan bo‘lardingiz?","I would live by the sea because I would swim every day."],["If you were the president for a day, what would you change?","Agar bir kunga prezident bo‘lsangiz, nimani o‘zgartirgan bo‘lardingiz?","I would build more parks and make buses free."],["If you could meet any person in history, who would it be?","Agar tarixdagi istalgan inson bilan uchrasha olsangiz, kim bilan uchrashgan bo‘lardingiz?","I would meet Amir Temur and ask him about his life."],["If you had a free plane ticket, where would you go?","Agar sizda bepul samolyot chiptasi bo‘lsa, qayerga borgan bo‘lardingiz?","I would go to Japan and try real sushi."],["What would you do if you found a bag of money?","Agar pul solingan sumkani topib olsangiz, nima qilgan bo‘lardingiz?","I would take it to the police."],["If you could speak every language, how would you use it?","Agar barcha tillarda gapira olsangiz, buni qanday ishlatgan bo‘lardingiz?","I would travel everywhere and make friends in every country."],["If you had a time machine, would you go to the past or the future?","Agar sizda vaqt mashinasi bo‘lsa, o‘tmishga yoki kelajakka borgan bo‘lardingiz?","I would go to the future because I would see new technology."]]}};
+function game(sec,g){
+var d=document.createElement("div");
+d.innerHTML='<h4>🎮 Speaking Game: '+g.n+' · <span class="uz">'+g.un+'</span></h4><div class="box"><p>'+g.r+'</p><p class="uz">'+g.ru+'</p></div><div class="card"><div class="q"></div><div class="qu uz" hidden></div><div class="ans" hidden></div><div class="tm"></div><div class="btns"><button class="b0">⏱ Start timer</button><button class="b1">Show Uzbek</button><button class="b2">Sample answer</button><button class="b3">+1 '+g.k+'</button><button class="b4">Next card ➜</button></div><div class="sc">'+g.k+': <b>0</b></div></div>';
+sec.appendChild(d);
+var $=function(s){return d.querySelector(s)},o=g.c.map(function(_,i){return i}).sort(function(){return Math.random()-.5}),i=0,n=0,iv=0;
+function show(){clearInterval(iv);var c=g.c[o[i%o.length]];
+$(".q").textContent=c[0];$(".qu").textContent=c[1];$(".ans").textContent="Sample: "+(c[0].indexOf("…")>-1?c[0].replace("…",c[2]):c[2]);
+$(".qu").hidden=true;$(".ans").hidden=true;$(".tm").textContent=g.s+" s"}
+$(".b0").onclick=function(){clearInterval(iv);var t=g.s;$(".tm").textContent=t+" s";iv=setInterval(function(){t--;$(".tm").textContent=t>0?t+" s":"Time! ⏰";if(t<=0)clearInterval(iv)},1000)};
+$(".b1").onclick=function(){$(".qu").hidden=!$(".qu").hidden};
+$(".b2").onclick=function(){$(".ans").hidden=!$(".ans").hidden};
+$(".b3").onclick=function(){n++;$(".sc b").textContent=n};
+$(".b4").onclick=function(){i++;show()};
+show()}
+L.forEach(function(x){game(document.getElementById(x.id),G[x.id])});
+</script>
+</body>
+</html>
